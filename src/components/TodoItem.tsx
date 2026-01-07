@@ -55,18 +55,18 @@ function getDeadlineColor(deadline: string | null): string {
 export default function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
   return (
     <div
-      className={`group flex flex-col gap-3 p-4 rounded-lg border-2 transition-all duration-200
+      className={`group flex flex-col gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg border transition-all duration-200
                   ${
                     todo.completed
                       ? 'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 opacity-75'
                       : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md'
                   }`}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 sm:gap-3">
         <button
           onClick={() => onToggle(todo.id)}
-          className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center
-                      transition-all duration-200
+          className={`flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 flex items-center justify-center
+                      transition-all duration-200 touch-manipulation
                       ${
                         todo.completed
                           ? 'bg-gradient-to-r from-green-400 to-emerald-500 border-green-500'
@@ -89,7 +89,7 @@ export default function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
           )}
         </button>
         <span
-          className={`flex-1 text-gray-800 dark:text-gray-200 transition-all duration-200
+          className={`flex-1 text-sm sm:text-base text-gray-800 dark:text-gray-200 transition-all duration-200 break-words
                       ${
                         todo.completed
                           ? 'line-through text-gray-500 dark:text-gray-500'
@@ -101,8 +101,8 @@ export default function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
         <button
           onClick={() => onDelete(todo.id)}
           className="flex-shrink-0 p-2 text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300
-                     opacity-0 group-hover:opacity-100 transition-opacity duration-200
-                     hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                     opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200
+                     hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
           aria-label="Sil"
         >
           <svg

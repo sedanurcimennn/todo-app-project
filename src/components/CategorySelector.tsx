@@ -31,7 +31,7 @@ export default function CategorySelector({
 }: CategorySelectorProps) {
   return (
     <div className="w-full">
-      <label className="block text-base font-semibold text-gray-700 dark:text-gray-300 mb-4">
+      <label className="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">
         Kategori Seç
       </label>
       <div className="w-full overflow-x-auto overflow-y-visible scrollbar-hide pt-1">
@@ -44,7 +44,7 @@ export default function CategorySelector({
             scrollbar-width: none;
           }
         `}</style>
-        <div className="flex gap-5 pb-3 min-w-max">
+        <div className="flex gap-3 sm:gap-5 pb-3 min-w-max">
           {CATEGORIES.map((category) => {
             const isSelected = value === category;
             return (
@@ -53,10 +53,10 @@ export default function CategorySelector({
                 type="button"
                 onClick={() => onChange(category)}
                 className={`
-                  relative flex-shrink-0 flex flex-col items-center justify-center gap-2
-                  px-2 py-3 rounded-lg border transition-all duration-200
-                  w-[120px] transform hover:scale-105 active:scale-95
-                  ${isSelected ? "" : ""}
+                  relative flex-shrink-0 flex flex-col items-center justify-center gap-1.5 sm:gap-2
+                  px-2 sm:px-2 py-2.5 sm:py-3 rounded-lg border transition-all duration-200
+                  w-[100px] sm:w-[120px] transform hover:scale-105 active:scale-95
+                  min-h-[80px] sm:min-h-[90px]
                   ${
                     isSelected
                       ? `${CATEGORY_COLORS[category]} border-current shadow-lg ring ring-purple-300 dark:ring-purple-600`
@@ -79,7 +79,7 @@ export default function CategorySelector({
                     </svg>
                   </div>
                 )}
-                <span className="text-2xl">{CATEGORY_ICONS[category]}</span>
+                <span className="text-xl sm:text-2xl">{CATEGORY_ICONS[category]}</span>
                 <span
                   className={`text-xs font-semibold ${
                     isSelected

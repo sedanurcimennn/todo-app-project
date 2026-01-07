@@ -132,7 +132,8 @@ export default function DatePicker({ value, onChange, minDate }: DatePickerProps
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-4 py-3 rounded-lg border transition-all duration-200
+        className={`w-full px-3 sm:px-4 py-3 rounded-lg border transition-all duration-200 text-sm sm:text-base
+          min-h-[44px]
           ${
             isOpen
               ? 'border-purple-500 dark:border-purple-400 shadow-lg'

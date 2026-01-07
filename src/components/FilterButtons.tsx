@@ -23,7 +23,8 @@ export default function FilterButtons({ currentFilter, onFilterChange, counts }:
         <button
           key={filter.type}
           onClick={() => onFilterChange(filter.type)}
-          className={`px-4 py-2 rounded-lg font-medium transition-all duration-200
+          className={`px-3 sm:px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm sm:text-base
+                     min-h-[44px] min-w-[80px] sm:min-w-[100px]
                      ${
                        currentFilter === filter.type
                          ? 'bg-gradient-to-r from-purple-500 to-indigo-600 text-white shadow-md'
@@ -32,7 +33,7 @@ export default function FilterButtons({ currentFilter, onFilterChange, counts }:
         >
           {filter.label}
           <span
-            className={`ml-2 px-2 py-0.5 rounded-full text-xs
+            className={`ml-1 sm:ml-2 px-1.5 sm:px-2 py-0.5 rounded-full text-xs
                        ${
                          currentFilter === filter.type
                            ? 'bg-white/20 text-white'
@@ -46,4 +47,3 @@ export default function FilterButtons({ currentFilter, onFilterChange, counts }:
     </div>
   );
 }
-
