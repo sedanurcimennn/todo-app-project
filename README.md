@@ -138,7 +138,45 @@ src/
 
 ## 🚀 Deployment
 
-Bu projeyi GitHub Pages, Vercel, Netlify veya herhangi bir static hosting servisine deploy edebilirsiniz:
+### Vercel ile Deployment
+
+Bu proje Vercel'de kolayca deploy edilebilir:
+
+#### Yöntem 1: Vercel CLI ile
+```bash
+# Vercel CLI'yi global olarak yükleyin
+npm i -g vercel
+
+# Proje dizininde
+vercel
+
+# Production'a deploy etmek için
+vercel --prod
+```
+
+#### Yöntem 2: GitHub ile (Önerilen)
+1. Projeyi GitHub'a push edin
+2. [Vercel](https://vercel.com) hesabınıza giriş yapın
+3. "Add New Project" butonuna tıklayın
+4. GitHub repository'nizi seçin
+5. Vercel otomatik olarak Vite projesini algılayacak
+6. "Deploy" butonuna tıklayın
+
+Vercel otomatik olarak:
+- Build komutunu çalıştıracak (`npm run build`)
+- Output directory'yi algılayacak (`dist/`)
+- Her push'ta otomatik deploy yapacak
+
+#### Yöntem 3: Vercel Dashboard
+1. [Vercel Dashboard](https://vercel.com/dashboard)'a gidin
+2. "Add New Project" → "Import Git Repository"
+3. Repository'nizi seçin ve import edin
+4. Build ayarları otomatik algılanacak
+5. Deploy edin
+
+### Diğer Platformlar
+
+Bu projeyi GitHub Pages, Netlify veya herhangi bir static hosting servisine de deploy edebilirsiniz:
 
 ```bash
 npm run build
