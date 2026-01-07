@@ -1,16 +1,20 @@
-import { useState, useMemo } from 'react';
-import { Todo, FilterType, Category } from './types/todo';
-import { useLocalStorage } from './hooks/useLocalStorage';
-import TodoForm from './components/TodoForm';
-import TodoList from './components/TodoList';
-import FilterButtons from './components/FilterButtons';
+import { useState, useMemo } from "react";
+import { Todo, FilterType, Category } from "./types/todo";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
+import FilterButtons from "./components/FilterButtons";
 
 function App() {
-  const [todos, setTodos] = useLocalStorage<Todo[]>('todos', []);
-  const [filter, setFilter] = useState<FilterType>('all');
-  const [categoryFilter, setCategoryFilter] = useState<Category | 'all'>('all');
+  const [todos, setTodos] = useLocalStorage<Todo[]>("todos", []);
+  const [filter, setFilter] = useState<FilterType>("all");
+  const [categoryFilter, setCategoryFilter] = useState<Category | "all">("all");
 
-  const addTodo = (text: string, category: Category, deadline: string | null) => {
+  const addTodo = (
+    text: string,
+    category: Category,
+    deadline: string | null
+  ) => {
     const newTodo: Todo = {
       id: crypto.randomUUID(),
       text,
@@ -39,10 +43,10 @@ function App() {
 
     // Status filter
     switch (filter) {
-      case 'active':
+      case "active":
         result = result.filter((todo) => !todo.completed);
         break;
-      case 'completed':
+      case "completed":
         result = result.filter((todo) => todo.completed);
         break;
       default:
@@ -50,7 +54,7 @@ function App() {
     }
 
     // Category filter
-    if (categoryFilter !== 'all') {
+    if (categoryFilter !== "all") {
       result = result.filter((todo) => todo.category === categoryFilter);
     }
 
@@ -90,7 +94,7 @@ function App() {
         {/* Header */}
         <header className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
-            ✨ Todo App
+            TickDone
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
             Modern ve kullanışlı görev yönetimi
@@ -110,28 +114,39 @@ function App() {
               </label>
               <div className="flex gap-2 flex-wrap">
                 <button
-                  onClick={() => setCategoryFilter('all')}
+                  onClick={() => setCategoryFilter("all")}
                   className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all
                     ${
-                      categoryFilter === 'all'
-                        ? 'bg-purple-500 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      categoryFilter === "all"
+                        ? "bg-purple-500 text-white"
+                        : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                     }`}
                 >
                   Tümü
                 </button>
-                {(['ev', 'iş', 'kişisel', 'alışveriş', 'sağlık', 'eğitim', 'diğer'] as Category[]).map((cat) => (
+                {(
+                  [
+                    "ev",
+                    "iş",
+                    "kişisel",
+                    "alışveriş",
+                    "sağlık",
+                    "eğitim",
+                    "diğer",
+                  ] as Category[]
+                ).map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setCategoryFilter(cat)}
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all capitalize
                       ${
                         categoryFilter === cat
-                          ? 'bg-purple-500 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                          ? "bg-purple-500 text-white"
+                          : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`}
                   >
-                    {cat} {categoryCounts[cat] > 0 && `(${categoryCounts[cat]})`}
+                    {cat}{" "}
+                    {categoryCounts[cat] > 0 && `(${categoryCounts[cat]})`}
                   </button>
                 ))}
               </div>
@@ -161,13 +176,22 @@ function App() {
             <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
               <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400 flex-wrap gap-2">
                 <span>
-                  Toplam: <strong className="text-gray-900 dark:text-gray-100">{counts.all}</strong>
+                  Toplam:{" "}
+                  <strong className="text-gray-900 dark:text-gray-100">
+                    {counts.all}
+                  </strong>
                 </span>
                 <span>
-                  Aktif: <strong className="text-purple-600 dark:text-purple-400">{counts.active}</strong>
+                  Aktif:{" "}
+                  <strong className="text-purple-600 dark:text-purple-400">
+                    {counts.active}
+                  </strong>
                 </span>
                 <span>
-                  Tamamlanan: <strong className="text-green-600 dark:text-green-400">{counts.completed}</strong>
+                  Tamamlanan:{" "}
+                  <strong className="text-green-600 dark:text-green-400">
+                    {counts.completed}
+                  </strong>
                 </span>
               </div>
             </div>
@@ -176,7 +200,17 @@ function App() {
 
         {/* Footer */}
         <footer className="text-center mt-8 text-gray-500 dark:text-gray-400 text-sm">
-          <p>React + TypeScript + Tailwind CSS ile yapıldı</p>
+          <p>
+            Created by{' '}
+            <a
+              href="https://sedanurcimen.com.tr/tr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors duration-200 underline decoration-2 underline-offset-2"
+            >
+              Seda Nur Çimen
+            </a>
+          </p>
         </footer>
       </div>
     </div>
