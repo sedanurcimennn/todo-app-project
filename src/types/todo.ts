@@ -30,3 +30,13 @@ export const CATEGORY_ICONS: Record<Category, string> = {
   eğitim: '📚',
   diğer: '📝',
 };
+
+export const CATEGORY_LABELS: Record<Category, string> = {
+  ev: 'Ev',
+  iş: 'İş',
+  kişisel: 'Kişisel',
+  alışveriş: 'Alışveriş',
+  sağlık: 'Sağlık',
+  eğitim: 'Eğitim',
+  diğer: 'Diğer',
+};

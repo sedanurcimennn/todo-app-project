@@ -1,19 +1,10 @@
 import { useState, useMemo } from "react";
-import { Todo, FilterType, Category } from "./types/todo";
+import { Todo, FilterType, Category, CATEGORY_LABELS } from "./types/todo";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import FilterButtons from "./components/FilterButtons";
-
-const CATEGORY_LABELS: Record<Category, string> = {
-  ev: "Ev",
-  iş: "İş",
-  kişisel: "Kişisel",
-  alışveriş: "Alışveriş",
-  sağlık: "Sağlık",
-  eğitim: "Eğitim",
-  diğer: "Diğer",
-};
+import { exportToText } from "./utils/exportTodos";
 
 function App() {
   const [todos, setTodos] = useLocalStorage<Todo[]>("todos", []);
@@ -186,7 +177,7 @@ function App() {
           {/* Footer Stats */}
           {todos.length > 0 && (
             <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <div className="flex justify-between items-center text-xs sm:text-sm text-gray-600 dark:text-gray-400 flex-wrap gap-2 sm:gap-0">
+              <div className="flex justify-between items-center text-xs sm:text-sm text-gray-600 dark:text-gray-400 flex-wrap gap-2 sm:gap-0 mb-4">
                 <span>
                   Toplam:{" "}
                   <strong className="text-gray-900 dark:text-gray-100">
@@ -205,6 +196,19 @@ function App() {
                     {counts.completed}
                   </strong>
                 </span>
+              </div>
+              
+              {/* Export Button */}
+              <div className="flex gap-2 flex-wrap justify-center">
+                <button
+                  onClick={() => exportToText(todos)}
+                  className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm font-medium transition-colors duration-200 flex items-center gap-2 min-h-[44px]"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Text İndir
+                </button>
               </div>
             </div>
           )}
