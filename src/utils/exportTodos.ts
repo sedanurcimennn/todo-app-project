@@ -29,7 +29,7 @@ export function exportToPDF(todos: Todo[]) {
     
     // Todos
     doc.setFontSize(12);
-    todos.forEach((todo, index) => {
+    todos.forEach((todo) => {
       // Check if we need a new page
       if (yPos > pageHeight - 30) {
         doc.addPage();
