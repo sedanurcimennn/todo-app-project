@@ -5,6 +5,16 @@ import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import FilterButtons from "./components/FilterButtons";
 
+const CATEGORY_LABELS: Record<Category, string> = {
+  ev: "Ev",
+  iş: "İş",
+  kişisel: "Kişisel",
+  alışveriş: "Alışveriş",
+  sağlık: "Sağlık",
+  eğitim: "Eğitim",
+  diğer: "Diğer",
+};
+
 function App() {
   const [todos, setTodos] = useLocalStorage<Todo[]>("todos", []);
   const [filter, setFilter] = useState<FilterType>("all");
@@ -89,33 +99,34 @@ function App() {
   }, [todos]);
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div className="min-h-screen py-4 sm:py-8 px-3 sm:px-4">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
-        <header className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+        <header className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
             TickDone
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
             Modern ve kullanışlı görev yönetimi
           </p>
         </header>
 
         {/* Main Card */}
-        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-6 md:p-8">
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 md:p-8">
           {/* Todo Form */}
           <TodoForm onAddTodo={addTodo} />
 
           {/* Category Filter */}
           {todos.length > 0 && (
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Kategoriye Göre Filtrele
               </label>
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex gap-1.5 sm:gap-2 flex-wrap">
                 <button
                   onClick={() => setCategoryFilter("all")}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all
+                  className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all
+                    min-h-[36px] sm:min-h-[40px]
                     ${
                       categoryFilter === "all"
                         ? "bg-purple-500 text-white"
@@ -138,14 +149,15 @@ function App() {
                   <button
                     key={cat}
                     onClick={() => setCategoryFilter(cat)}
-                    className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all capitalize
+                    className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all
+                      min-h-[36px] sm:min-h-[40px]
                       ${
                         categoryFilter === cat
                           ? "bg-purple-500 text-white"
                           : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                       }`}
                   >
-                    {cat}{" "}
+                    {CATEGORY_LABELS[cat]}{" "}
                     {categoryCounts[cat] > 0 && `(${categoryCounts[cat]})`}
                   </button>
                 ))}
@@ -174,7 +186,7 @@ function App() {
           {/* Footer Stats */}
           {todos.length > 0 && (
             <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400 flex-wrap gap-2">
+              <div className="flex justify-between items-center text-xs sm:text-sm text-gray-600 dark:text-gray-400 flex-wrap gap-2 sm:gap-0">
                 <span>
                   Toplam:{" "}
                   <strong className="text-gray-900 dark:text-gray-100">
@@ -199,7 +211,7 @@ function App() {
         </div>
 
         {/* Footer */}
-        <footer className="text-center mt-8 text-gray-500 dark:text-gray-400 text-sm">
+        <footer className="text-center mt-6 sm:mt-8 text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
           <p>
             Created by{" "}
             <a
